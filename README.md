@@ -4,19 +4,6 @@
 
 **🚀 Quick Try**: Experience the reverse engineering analysis results through our interactive visualization tool at [https://yuyz0112.github.io/claude-code-reverse/visualize.html](https://yuyz0112.github.io/claude-code-reverse/visualize.html)
 
-When Anthropic released Claude Code (February 2025), I couldn't try it directly because registrations were paused due to high load. So, I implemented a solution to reverse engineer static code using LLMs, which became the first version of this repository. The code for the initial version is currently archived in the [v1](./v1) directory.
-
-> At the time, there was another version by someone else that directly restored the source code based on sourcemaps. However, that repository was later taken down, indicating that Anthropic officially does not support this type of reverse engineering.
-
-Actually, the implementation of v1 was less about reverse engineering Claude Code and more an experiment to explore the limits of "analyzing large uglify JS code using LLMs."
-
-When we were able to actually run Claude Code, we found many simpler and more efficient ways to understand how it works. However, I recently noticed a repository gaining popularity that referenced the v1 approach (it mentioned referring to my v1 solution). Yet, a deeper look reveals that this method isn't effective for analyzing the overall architecture and design.
-
-So, I spent a night exploring a reverse engineering approach based on **runtime behavior and API data** (hereafter referred to as v2). I also created a log visualization tool to help researchers interested in Claude Code analyze the parts they care about.
-
-- If you're interested in the implementation ideas behind v2, please read the following sections in order.
-- If you're only interested in the results of the v2 reverse engineering analysis, you can jump directly to the "Analysis Results" section.
-
 ## Monkey Patching API Request Code
 
 As an agent, Claude Code ultimately needs to interact with LLM APIs. Therefore, the core idea behind v2 is to ignore Claude Code's complex internal processing and instead focus only on the requests and responses that Claude Code ultimately exchanges with the LLM API in different task scenarios.
@@ -30,6 +17,7 @@ To get the API data, there are many methods, but my current approach involves mo
 First, locate the `cli.js` file:
 
 ```shell
+npm install -g @anthropic-ai/claude-code
 which claude
 $PATH_TO_CLAUDE
 ls -l $PATH_TO_CLAUDE
