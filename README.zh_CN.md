@@ -6,14 +6,6 @@
 
 **🚀 快速体验**: 通过交互式可视化工具体验逆向分析结果：[https://yuyz0112.github.io/claude-code-reverse/visualize.html](https://yuyz0112.github.io/claude-code-reverse/visualize.html)
 
-在 Anthropic 发布 Claude Code（2025 年 2 月），因为当时负载过高暂停注册，无法直接体验，所以我实现了一套使用 LLM 逆向分析静态代码的方案，也就是这个仓库的第一版。
-目前第一版的代码归档在了 [v1](./v1) 目录下。
-
-> 在当时，还有一个其他人基于 sourcemap 直接还原出源代码的版本，但后来该仓库被下架，说明 Anthropic 官方并不支持该种逆向方式。
-
-实际上 v1 版本的实现与其说是为了逆向 Claude Code，其实更像是一个探索「基于 LLM 分析大型 uglify JS 代码」能力上限的实验。在**有条件实际运行 Claude Code**的时候，其实我们还有更多简单、高效的方法探索 Claude Code 的工作方式。但我发现最近一个参考 v1 版本思路的 Repo 广为流传（仓库中也提到了参考了我的 v1 方案），但深入去看，就会发现这种方法对于分析整体架构与设计并不有效。
-
-所以我用了一个晚上的时间探索了基于行为与 API 数据的动态逆向分析方法（以下简称 v2），并制作了日志可视化工具，便于对 Claude Code 感兴趣的研究者自行分析自己感兴趣的部分。
 
 - 如果你关心 v2 的实现思路，请按顺序阅读以下章节。
 - 如果你只关心 v2 逆向分析的结果，可以直接从「分析结果」章节开始阅读。
@@ -29,6 +21,7 @@
 首先找到 cli.js 文件：
 
 ```shell
+npm install -g @anthropic-ai/claude-code
 which claude
 $PATH_TO_CLAUDE
 ls -l $PATH_TO_CLAUDE
