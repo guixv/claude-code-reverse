@@ -1,8 +1,11 @@
-# Claude Code 1.0.62
+# Claude Code 2.0.76
 
 --- a/cli.js
 +++ b/cli.js
-@@  @@
+@@ -8,6 +8,138 @@
+ import {
+     createRequire as Ez9
+ } from "node:module";
 +// MONKEY PATCH
 +import fs from "fs";
 +import path from "path";
@@ -136,11 +139,15 @@
 +  }
 +  return inner;
 +}
-+
-class GP extends t5 {
-    constructor() {
-        super(...arguments);
-        this.completions = new n_(this), this.messages = new hw(this), this.models = new Et(this), this.beta = new qK(this)
++// MONKEY PATCH END
+ var Vz9 = Object.create;
+ var {
+     getPrototypeOf: Hz9,
+@@ -182068,6 +182200,37 @@
+     OT = class OT extends lG {
+         constructor() {
+             super(...arguments);
+             this.completions = new Xn(this), this.messages = new uN(this), this.models = new MJA(this), this.beta = new tE(this)
 +
 +    // Monkey-patch beta.messages.create for logging
 +    {
@@ -174,6 +181,5 @@ class GP extends t5 {
 +        });
 +      };
 +    }
-   }
- }
-+// MONKEY PATCH END
+         }
+     };
