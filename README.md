@@ -1,4 +1,4 @@
-# Claude Code Reverse Engineering: New Version (July 2025)
+# Claude Code Reverse Engineering: New Version (2026/1)
 
 [中文版](./README.zh_CN.md)
 
